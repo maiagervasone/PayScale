@@ -12,13 +12,18 @@ public class Offer {
     private int bonus;
     private String additional;
 
-    public Offer(String company, String location, int salary, int bonus, String notes)
+    private double lat;
+    private double lon;
+
+    public Offer(String company, String location, int salary, int bonus, String notes, double lat, double lon)
     {
         this.company = company;
         this.location = location;
         this.annualSalary = salary;
         this.bonus = bonus;
         this.additional = notes;
+        this.lat = lat;
+        this.lon = lon;
     }
 
     public String getCompany() {
@@ -31,5 +36,13 @@ public class Offer {
 
     public int getAnnualSalary() {
         return annualSalary;
+    }
+
+    public double getLat(){
+        return lat;
+    }
+
+    public double getLon(){
+        return lon;
     }
 }

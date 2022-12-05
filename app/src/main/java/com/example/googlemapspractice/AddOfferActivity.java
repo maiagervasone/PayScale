@@ -44,7 +44,7 @@ public class AddOfferActivity extends AppCompatActivity {
         int bonus = Integer.parseInt(bonusET.getText().toString());
         String notes = notesET.getText().toString();
 
-        Offer newOffer = new Offer(company, location, salary, bonus, notes);
+        Offer newOffer = new Offer(company, location, salary, bonus, notes, -82.4, 71);
         Offer.offerList.add(newOffer);
         Intent myIntent = new Intent(getBaseContext(), ViewByListActivity.class);
         startActivity(myIntent);
