@@ -42,13 +42,12 @@ public class MyOffers extends AppCompatActivity implements View.OnClickListener{
             startActivity(myIntent);
             return;
         }
-        //insert functionality for viewing by list
-        /*
+
         if (buttonText.equals("View by List")) {
-            Intent myIntent = new Intent(getBaseContext(), INSERTCLASS.class);
+            Intent myIntent = new Intent(getBaseContext(), ViewByListActivity.class);
             startActivity(myIntent);
             return;
         }
-         */
+
     }
 }
