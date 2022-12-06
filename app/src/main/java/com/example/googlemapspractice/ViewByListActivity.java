@@ -91,7 +91,7 @@ public class ViewByListActivity extends AppCompatActivity implements View.OnClic
             startActivity(myIntent);
             return;
         }
-        if (buttonText.equals("+")) {
+        if (buttonText.equals("Add New Offer +")) {
             Intent myIntent = new Intent(getBaseContext(), AddOfferActivity.class);
             startActivity(myIntent);
             return;
