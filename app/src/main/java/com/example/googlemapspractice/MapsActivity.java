@@ -3,6 +3,7 @@ package com.example.googlemapspractice;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,13 +13,18 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.googlemapspractice.databinding.ActivityMapsBinding;
 
+import java.util.ArrayList;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
@@ -28,6 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
     }
 
     /**
@@ -44,10 +51,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng UF = new LatLng(29.6454508, -82.3481389);
-        mMap.addMarker(new MarkerOptions().position(UF).title("Marker at the University of Florida"));
-        mMap.setMinZoomPreference(12f);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(UF));
+        ArrayList<Offer> offerList = Offer.offerList;
+        for (Offer offer : offerList) {
+
+            LatLng dest = new LatLng(offer.getLat(), offer.getLon());
+            mMap.addMarker(new MarkerOptions().position(dest).title(offer.getCompany()));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(dest));
+
+        }
     }
 }

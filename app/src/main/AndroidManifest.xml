@@ -47,11 +47,14 @@
 
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="${MAPS_API_KEY}" />
         </activity>
         <activity android:name=".CompareOffersActivity" />
         <activity android:name=".HowItWorks" />
         <activity android:name=".MyOffers" />
+        <activity android:name=".Offer" />
+        <activity android:name=".AddOfferActivity" />
+        <activity android:name=".ViewByListActivity" />
     </application>
 
 </manifest>
