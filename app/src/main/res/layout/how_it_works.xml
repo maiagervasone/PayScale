@@ -27,9 +27,9 @@
             android:layout_width="355dp"
             android:layout_height="400dp"
             android:layout_gravity="center"
-            android:layout_marginTop="-200dp"
+            android:layout_marginTop="-165dp"
             android:fontFamily="sans-serif-condensed"
-            android:text="Payscale makes it easy to compare your salary offers across different states in the US. Simply enter your salary offer and location into our comparison app and we’ll show you how much each salary is worth in each state after accounting for state tax, income tax, cost of living, and other state-specific expenses."
+            android:text="Use the “Compare Offers” feature to see how the same salary may differ in different states after accounting for state tax, income tax, cost of living, and other state-specific expenses."
             android:textAlignment="textStart"
             android:textSize="25dp" />
 
@@ -37,9 +37,9 @@
             android:layout_width="355dp"
             android:layout_height="400dp"
             android:layout_gravity="center"
-            android:layout_marginTop="-90dp"
+            android:layout_marginTop="-180dp"
             android:fontFamily="sans-serif-condensed"
-            android:text="You can add multiple offers in different locations to compare them all in the same place!"
+            android:text="Use the “My Offers” feature to store all of your offers in one place to compare their net salary by location."
             android:textAlignment="textStart"
             android:textSize="25dp" />
 
@@ -54,7 +54,7 @@
             android:fontFamily="sans-serif-condensed-medium"
             android:textColor="#737373"
             android:textSize="26dp"
-            android:layout_marginTop="-250dp"
+            android:layout_marginTop="-190dp"
             android:layout_marginBottom="20dp"/>
 
 
