@@ -85,7 +85,7 @@ public class ViewByListActivity extends AppCompatActivity implements View.OnClic
         Button button = (Button) view;
         String buttonText = button.getText().toString();
         if (buttonText.equals("back")) {
-            Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
+            Intent myIntent = new Intent(getBaseContext(), MyOffers.class);
             startActivity(myIntent);
             return;
         }

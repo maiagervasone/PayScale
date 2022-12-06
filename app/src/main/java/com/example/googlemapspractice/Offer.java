@@ -9,19 +9,14 @@ public class Offer {
     private String location;
     private int annualSalary;
 
-    private int bonus;
-    private String additional;
-
     private double lat;
     private double lon;
 
-    public Offer(String company, String location, int salary, int bonus, String notes, double lat, double lon)
+    public Offer(String company, String location, int salary, double lat, double lon)
     {
         this.company = company;
         this.location = location;
         this.annualSalary = salary;
-        this.bonus = bonus;
-        this.additional = notes;
         this.lat = lat;
         this.lon = lon;
     }
