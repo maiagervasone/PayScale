@@ -50,12 +50,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        LatLng middleOfUS = new LatLng(39.828300, -98.579500);
+        mMap.setMinZoomPreference(4f);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(middleOfUS));
 
         ArrayList<Offer> offerList = Offer.offerList;
         for (Offer offer : offerList) {
 
             LatLng dest = new LatLng(offer.getLat(), offer.getLon());
             mMap.addMarker(new MarkerOptions().position(dest).title(offer.getCompany()));
+            mMap.setMinZoomPreference(6f);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(dest));
 
         }

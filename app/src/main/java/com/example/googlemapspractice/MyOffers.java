@@ -12,6 +12,7 @@ public class MyOffers extends AppCompatActivity implements View.OnClickListener{
     Button back;
     Button map;
     Button list;
+    Button add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class MyOffers extends AppCompatActivity implements View.OnClickListener{
         assignId(back,R.id.back);
         assignId(map,R.id.map);
         assignId(list,R.id.list);
+        assignId(add,R.id.add);
     }
 
     void assignId(Button btn,int id){
@@ -37,12 +39,16 @@ public class MyOffers extends AppCompatActivity implements View.OnClickListener{
             startActivity(myIntent);
             return;
         }
+        if (buttonText.equals("Add New Offer")) {
+            Intent myIntent = new Intent(getBaseContext(), AddOfferActivity.class);
+            startActivity(myIntent);
+            return;
+        }
         if (buttonText.equals("View by Map")) {
             Intent myIntent = new Intent(getBaseContext(), MapsActivity.class);
             startActivity(myIntent);
             return;
         }
-
         if (buttonText.equals("View by List")) {
             Intent myIntent = new Intent(getBaseContext(), ViewByListActivity.class);
             startActivity(myIntent);
