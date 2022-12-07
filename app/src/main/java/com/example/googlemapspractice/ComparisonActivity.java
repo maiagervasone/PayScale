@@ -78,9 +78,9 @@ public class ComparisonActivity extends AppCompatActivity {
         stateTwoStateTax.setText(string);
 
         // Income Tax
-        string = String.valueOf(stateOne.incomeTax) + "%";
+        string = String.valueOf(stateOne.incomeTax*100) + "%";
         stateOneIncomeTax.setText(string);
-        string = String.valueOf(stateTwo.incomeTax) + "%";
+        string = String.valueOf(stateTwo.incomeTax*100) + "%";
         stateTwoIncomeTax.setText(string);
 
         // Take Home Pay
