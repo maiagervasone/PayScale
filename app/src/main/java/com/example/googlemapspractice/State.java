@@ -20,7 +20,7 @@ public class State {
 
     public State(String name, double stateTax, double costOfLivingIndex, double housingIndex,
                  double groceriesIndex, double utilitiesIndex, double transportationIndex,
-                 double healthIndex, double miscellaneousIndex, int averageSalary) {
+                 double healthIndex, double miscellaneousIndex, int averageSalary, double incomeTax) {
         this.name = name;
         this.stateTax = stateTax;
         this.incomeTax = incomeTax;

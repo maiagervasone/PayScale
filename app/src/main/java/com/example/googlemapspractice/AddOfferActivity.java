@@ -47,8 +47,9 @@ public class AddOfferActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         String cityName = addresses.get(0).getLocality();
+        String state = addresses.get(0).getAdminArea();
 
-        Offer newOffer = new Offer(company, cityName, salary, coords.get(0).getLatitude(), coords.get(0).getLongitude());
+        Offer newOffer = new Offer(company, cityName, state, salary, coords.get(0).getLatitude(), coords.get(0).getLongitude());
         Offer.offerList.add(newOffer);
         Intent myIntent = new Intent(getBaseContext(), ViewByListActivity.class);
         startActivity(myIntent);
