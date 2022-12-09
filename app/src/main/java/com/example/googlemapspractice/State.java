@@ -2,11 +2,15 @@ package com.example.googlemapspractice;
 
 import org.parceler.Parcel;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Parcel
 public class State {
     public String name;
     public double stateTax;
     public double incomeTax;
+    public double takeHomePay;
     public double costOfLivingIndex;
     public double housingIndex;
     public double groceriesIndex;
@@ -15,6 +19,9 @@ public class State {
     public double healthIndex;
     public double miscellaneousIndex;
     public int averageSalary;
+    double[] stateTaxRates;
+    double[] stateTaxBrackets;
+    //public Map<Double, Double> stateTaxes = new HashMap<Double, Double>();
 
     public State() {}
 
@@ -23,7 +30,6 @@ public class State {
                  double healthIndex, double miscellaneousIndex, int averageSalary) {
         this.name = name;
         this.stateTax = stateTax;
-        this.incomeTax = incomeTax;
         this.costOfLivingIndex = costOfLivingIndex;
         this.housingIndex = housingIndex;
         this.groceriesIndex = groceriesIndex;

@@ -67,10 +67,20 @@ public class CompareOffersActivity extends AppCompatActivity implements View.OnC
                 State stateTwo = stateData.states.get(stateTwoName);
 
                 Intent comparisonIntent = new Intent(CompareOffersActivity.this, ComparisonActivity.class);
-                comparisonIntent.putExtra("salary", enterSalaryEditText.getText().toString());
+                comparisonIntent.putExtra("salary", Double.parseDouble(enterSalaryEditText.getText().toString()));
                 comparisonIntent.putExtra("stateOne", Parcels.wrap(stateOne));
                 comparisonIntent.putExtra("stateTwo", Parcels.wrap(stateTwo));
                 startActivity(comparisonIntent);
+            }
+        });
+
+        // See taxes button
+        seeTaxesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent taxIntent = new Intent(CompareOffersActivity.this, TaxesActivity.class);
+                taxIntent.putExtra("salary", Double.parseDouble(enterSalaryEditText.getText().toString()));
+                startActivity(taxIntent);
             }
         });
     }
