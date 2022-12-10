@@ -14,7 +14,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
-        android:text="TAXES BASED ON INCOME (BI-WEEKLY)"
+        android:text="TAXES BASED ON INCOME"
         android:textSize="40sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"

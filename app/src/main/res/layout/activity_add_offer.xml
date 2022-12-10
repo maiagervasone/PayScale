@@ -89,7 +89,7 @@
         android:layout_gravity="center"
         android:backgroundTint="#737373"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="number"
         android:textColor="#737373"
         android:textColorHighlight="#737373"
         android:textColorHint="#737373"

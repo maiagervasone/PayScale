@@ -12,7 +12,7 @@ import org.parceler.Parcels;
 public class ComparisonActivity extends AppCompatActivity {
     State stateOne;
     State stateTwo;
-    double salary = 0;
+    public static double salary = 0;
     double federalTax = 0;
     double medicareTax = 0;
     double socialSecurityTax = 0;
@@ -67,8 +67,8 @@ public class ComparisonActivity extends AppCompatActivity {
         salary = extras.getDouble("salary", 0);
 
         // Income tax
-        calculateIncomeTax(stateOne);
-        calculateIncomeTax(stateTwo);
+        calculateIncomeTax(stateOne, salary);
+        calculateIncomeTax(stateTwo, salary);
 
         // Government taxes
         TaxesActivity.salary = salary;
@@ -76,22 +76,24 @@ public class ComparisonActivity extends AppCompatActivity {
         TaxesActivity.calculateTaxes();
 
         // Take Home Pay
-        calculateTakeHomePay(stateOne);
-        calculateTakeHomePay(stateTwo);
+        calculateTakeHomePay(stateOne, salary);
+        calculateTakeHomePay(stateTwo, salary);
         showData();
     }
 
-    private void calculateIncomeTax(State state) {
+    public static void calculateIncomeTax(State state, double salary) {
         double incomeTaxRate = 0.0;
 
         // Get stateTaxBrackets
         double[] brackets = state.stateTaxBrackets;
-        System.out.println(brackets);
 
         if (brackets != null) {
+            Log.d("state", "calculateIncomeTax: Length = " + brackets.length);
             for (int i = brackets.length - 1; i >= 0; i--) {
+                Log.d("state", "calculateIncomeTax: Salary = " + salary);
                 if (salary > brackets[i]) {
                     incomeTaxRate = state.stateTaxRates[i];
+                    Log.d("state", "calculateIncomeTax: State income tax rate = " + String.valueOf(incomeTaxRate));
                     break;
                 }
             }
@@ -100,7 +102,7 @@ public class ComparisonActivity extends AppCompatActivity {
         state.incomeTax = incomeTaxRate;
     }
 
-    private void calculateTakeHomePay(State state){
+    public static void calculateTakeHomePay(State state, double salary){
         Double incomeTaxDeduction = TaxesActivity.federalTax + TaxesActivity.medicareTax +
                 TaxesActivity.socialSecurityTax + (state.incomeTax * salary);
         System.out.println(incomeTaxDeduction);
@@ -119,10 +121,12 @@ public class ComparisonActivity extends AppCompatActivity {
         string = String.valueOf(stateTwo.stateTax) + "%";
         stateTwoStateTax.setText(string);
 
-        s1Color = stateOne.stateTax < stateTwo.stateTax ? R.color.green : R.color.red;
-        s2Color = stateTwo.stateTax < stateOne.stateTax ? R.color.green : R.color.red;
-        stateOneStateTax.setTextColor(getResources().getColor(s1Color));
-        stateTwoStateTax.setTextColor(getResources().getColor(s2Color));
+        if (stateOne.stateTax != stateTwo.stateTax) {
+            s1Color = stateOne.stateTax < stateTwo.stateTax ? R.color.green : R.color.red;
+            s2Color = stateTwo.stateTax < stateOne.stateTax ? R.color.green : R.color.red;
+            stateOneStateTax.setTextColor(getResources().getColor(s1Color));
+            stateTwoStateTax.setTextColor(getResources().getColor(s2Color));
+        }
 
         // Income Tax
         double incomeTaxRate = stateOne.incomeTax * 100;
@@ -132,10 +136,12 @@ public class ComparisonActivity extends AppCompatActivity {
         incomeTax = String.format("%.2f", incomeTaxRate) + "%";
         stateTwoIncomeTax.setText(incomeTax);
 
-        s1Color = stateOne.incomeTax < stateTwo.incomeTax ? R.color.green : R.color.red;
-        s2Color = stateTwo.incomeTax < stateOne.incomeTax ? R.color.green : R.color.red;
-        stateOneIncomeTax.setTextColor(getResources().getColor(s1Color));
-        stateTwoIncomeTax.setTextColor(getResources().getColor(s2Color));
+        if (stateOne.incomeTax != stateTwo.incomeTax) {
+            s1Color = stateOne.incomeTax < stateTwo.incomeTax ? R.color.green : R.color.red;
+            s2Color = stateTwo.incomeTax < stateOne.incomeTax ? R.color.green : R.color.red;
+            stateOneIncomeTax.setTextColor(getResources().getColor(s1Color));
+            stateTwoIncomeTax.setTextColor(getResources().getColor(s2Color));
+        }
 
         // Take Home Pay
         double takeHomePay = stateOne.takeHomePay;
@@ -145,16 +151,20 @@ public class ComparisonActivity extends AppCompatActivity {
         takeHomePayString = "$" + String.format("%.2f", takeHomePay);
         stateTwoTakeHomePay.setText(takeHomePayString);
 
-        s1Color = stateOne.takeHomePay > stateTwo.takeHomePay ? R.color.green : R.color.red;
-        s2Color = stateTwo.takeHomePay > stateOne.takeHomePay ? R.color.green : R.color.red;
-        stateOneTakeHomePay.setTextColor(getResources().getColor(s1Color));
-        stateTwoTakeHomePay.setTextColor(getResources().getColor(s2Color));
+        if (stateOne.takeHomePay != stateTwo.takeHomePay) {
+            s1Color = stateOne.takeHomePay > stateTwo.takeHomePay ? R.color.green : R.color.red;
+            s2Color = stateTwo.takeHomePay > stateOne.takeHomePay ? R.color.green : R.color.red;
+            stateOneTakeHomePay.setTextColor(getResources().getColor(s1Color));
+            stateTwoTakeHomePay.setTextColor(getResources().getColor(s2Color));
+        }
 
         // Cost of Living Index
-        s1Color = stateOne.costOfLivingIndex < stateTwo.costOfLivingIndex ? R.color.green : R.color.red;
-        s2Color = stateTwo.costOfLivingIndex < stateOne.costOfLivingIndex ? R.color.green : R.color.red;
-        stateOneCOLIndex.setTextColor(getResources().getColor(s1Color));
-        stateTwoCOLIndex.setTextColor(getResources().getColor(s2Color));
+        if (stateOne.costOfLivingIndex != stateTwo.costOfLivingIndex) {
+            s1Color = stateOne.costOfLivingIndex < stateTwo.costOfLivingIndex ? R.color.green : R.color.red;
+            s2Color = stateTwo.costOfLivingIndex < stateOne.costOfLivingIndex ? R.color.green : R.color.red;
+            stateOneCOLIndex.setTextColor(getResources().getColor(s1Color));
+            stateTwoCOLIndex.setTextColor(getResources().getColor(s2Color));
+        }
 
         string = String.valueOf(stateOne.costOfLivingIndex);
         stateOneCOLIndex.setText(string);
@@ -162,11 +172,12 @@ public class ComparisonActivity extends AppCompatActivity {
         stateTwoCOLIndex.setText(string);
 
         // Housing index
-        s1Color = stateOne.housingIndex < stateTwo.housingIndex ? R.color.green : R.color.red;
-        s2Color = stateTwo.housingIndex < stateOne.housingIndex ? R.color.green : R.color.red;
-        s2Color = s1Color == R.color.green ? R.color.red : R.color.green;
-        stateOneHousingIndex.setTextColor(getResources().getColor(s1Color));
-        stateTwoHousingIndex.setTextColor(getResources().getColor(s2Color));
+        if (stateOne.housingIndex != stateTwo.housingIndex) {
+            s1Color = stateOne.housingIndex < stateTwo.housingIndex ? R.color.green : R.color.red;
+            s2Color = stateTwo.housingIndex < stateOne.housingIndex ? R.color.green : R.color.red;
+            stateOneHousingIndex.setTextColor(getResources().getColor(s1Color));
+            stateTwoHousingIndex.setTextColor(getResources().getColor(s2Color));
+        }
 
         string = String.valueOf(stateOne.housingIndex);
         stateOneHousingIndex.setText(string);
@@ -174,10 +185,12 @@ public class ComparisonActivity extends AppCompatActivity {
         stateTwoHousingIndex.setText(string);
 
         // Groceries index
-        s1Color = stateOne.groceriesIndex < stateTwo.groceriesIndex ? R.color.green : R.color.red;
-        s2Color = stateTwo.groceriesIndex < stateOne.groceriesIndex ? R.color.green : R.color.red;
-        stateOneGroceriesIndex.setTextColor(getResources().getColor(s1Color));
-        stateTwoGroceriesIndex.setTextColor(getResources().getColor(s2Color));
+        if (stateOne.groceriesIndex != stateTwo.groceriesIndex) {
+            s1Color = stateOne.groceriesIndex < stateTwo.groceriesIndex ? R.color.green : R.color.red;
+            s2Color = stateTwo.groceriesIndex < stateOne.groceriesIndex ? R.color.green : R.color.red;
+            stateOneGroceriesIndex.setTextColor(getResources().getColor(s1Color));
+            stateTwoGroceriesIndex.setTextColor(getResources().getColor(s2Color));
+        }
 
         string = String.valueOf(stateOne.groceriesIndex);
         stateOneGroceriesIndex.setText(string);
@@ -185,10 +198,12 @@ public class ComparisonActivity extends AppCompatActivity {
         stateTwoGroceriesIndex.setText(string);
 
         // Utilities index
-        s1Color = stateOne.utilitiesIndex < stateTwo.utilitiesIndex ? R.color.green : R.color.red;
-        s2Color = stateTwo.utilitiesIndex < stateOne.utilitiesIndex ? R.color.green : R.color.red;
-        stateOneUtilitiesIndex.setTextColor(getResources().getColor(s1Color));
-        stateTwoUtilitiesIndex.setTextColor(getResources().getColor(s2Color));
+        if (stateOne.utilitiesIndex != stateTwo.utilitiesIndex) {
+            s1Color = stateOne.utilitiesIndex < stateTwo.utilitiesIndex ? R.color.green : R.color.red;
+            s2Color = stateTwo.utilitiesIndex < stateOne.utilitiesIndex ? R.color.green : R.color.red;
+            stateOneUtilitiesIndex.setTextColor(getResources().getColor(s1Color));
+            stateTwoUtilitiesIndex.setTextColor(getResources().getColor(s2Color));
+        }
 
         string = String.valueOf(stateOne.utilitiesIndex);
         stateOneUtilitiesIndex.setText(string);
@@ -196,10 +211,12 @@ public class ComparisonActivity extends AppCompatActivity {
         stateTwoUtilitiesIndex.setText(string);
 
         // Transportation index
-        s1Color = stateOne.transportationIndex < stateTwo.transportationIndex ? R.color.green : R.color.red;
-        s2Color = stateTwo.transportationIndex < stateOne.transportationIndex ? R.color.green : R.color.red;
-        stateOneTransportationIndex.setTextColor(getResources().getColor(s1Color));
-        stateTwoTransportationIndex.setTextColor(getResources().getColor(s2Color));
+        if (stateOne.transportationIndex != stateTwo.transportationIndex) {
+            s1Color = stateOne.transportationIndex < stateTwo.transportationIndex ? R.color.green : R.color.red;
+            s2Color = stateTwo.transportationIndex < stateOne.transportationIndex ? R.color.green : R.color.red;
+            stateOneTransportationIndex.setTextColor(getResources().getColor(s1Color));
+            stateTwoTransportationIndex.setTextColor(getResources().getColor(s2Color));
+        }
 
         string = String.valueOf(stateOne.transportationIndex);
         stateOneTransportationIndex.setText(string);
@@ -207,10 +224,12 @@ public class ComparisonActivity extends AppCompatActivity {
         stateTwoTransportationIndex.setText(string);
 
         // Health index
-        s1Color = stateOne.healthIndex < stateTwo.healthIndex ? R.color.green : R.color.red;
-        s2Color = stateTwo.healthIndex < stateOne.healthIndex ? R.color.green : R.color.red;
-        stateOneHealthIndex.setTextColor(getResources().getColor(s1Color));
-        stateTwoHealthIndex.setTextColor(getResources().getColor(s2Color));
+        if (stateOne.healthIndex != stateTwo.healthIndex) {
+            s1Color = stateOne.healthIndex < stateTwo.healthIndex ? R.color.green : R.color.red;
+            s2Color = stateTwo.healthIndex < stateOne.healthIndex ? R.color.green : R.color.red;
+            stateOneHealthIndex.setTextColor(getResources().getColor(s1Color));
+            stateTwoHealthIndex.setTextColor(getResources().getColor(s2Color));
+        }
 
         string = String.valueOf(stateOne.healthIndex);
         stateOneHealthIndex.setText(string);
@@ -218,10 +237,12 @@ public class ComparisonActivity extends AppCompatActivity {
         stateTwoHealthIndex.setText(string);
 
         // Miscellaneous index
-        s1Color = stateOne.miscellaneousIndex < stateTwo.miscellaneousIndex ? R.color.green : R.color.red;
-        s2Color = stateTwo.miscellaneousIndex < stateOne.miscellaneousIndex ? R.color.green : R.color.red;
-        stateOneMiscellaneousIndex.setTextColor(getResources().getColor(s1Color));
-        stateTwoMiscellaneousIndex.setTextColor(getResources().getColor(s2Color));
+        if (stateOne.miscellaneousIndex != stateTwo.miscellaneousIndex) {
+            s1Color = stateOne.miscellaneousIndex < stateTwo.miscellaneousIndex ? R.color.green : R.color.red;
+            s2Color = stateTwo.miscellaneousIndex < stateOne.miscellaneousIndex ? R.color.green : R.color.red;
+            stateOneMiscellaneousIndex.setTextColor(getResources().getColor(s1Color));
+            stateTwoMiscellaneousIndex.setTextColor(getResources().getColor(s2Color));
+        }
 
         string = String.valueOf(stateOne.miscellaneousIndex);
         stateOneMiscellaneousIndex.setText(string);

@@ -14,12 +14,8 @@ import org.parceler.Parcels;
 
 public class CompareOffersActivity extends AppCompatActivity implements View.OnClickListener{
 
-    //private List<StateNameItem> stateNameItemList;
     AutoCompleteTextView stateOneAutoCompleteTextView;
     AutoCompleteTextView stateTwoAutoCompleteTextView;
-
-    // Data
-    Data stateData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +43,6 @@ public class CompareOffersActivity extends AppCompatActivity implements View.OnC
         stateOneAutoCompleteTextView.setAdapter(arrayAdapter);
         stateTwoAutoCompleteTextView.setAdapter(arrayAdapter);
 
-        // Init Data
-        stateData = new Data();
-
         // Set onclick listeners
         startComparisonButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,8 +56,8 @@ public class CompareOffersActivity extends AppCompatActivity implements View.OnC
                 }
                 String stateOneName = stateOneAutoCompleteTextView.getText().toString().toLowerCase();
                 String stateTwoName = stateTwoAutoCompleteTextView.getText().toString().toLowerCase();
-                State stateOne = stateData.states.get(stateOneName);
-                State stateTwo = stateData.states.get(stateTwoName);
+                State stateOne = Data.states.get(stateOneName);
+                State stateTwo = Data.states.get(stateTwoName);
 
                 Intent comparisonIntent = new Intent(CompareOffersActivity.this, ComparisonActivity.class);
                 comparisonIntent.putExtra("salary", Double.parseDouble(enterSalaryEditText.getText().toString()));

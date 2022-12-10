@@ -54,6 +54,7 @@ public class TaxesActivity extends AppCompatActivity {
     public static void setTaxRate() {
         if (salary < 11001) {
             baseFederalTax = 0;
+            salaryTaxCutoff = 0;
             taxRate = 0.1;
         } else if (salary < 44726) {
             baseFederalTax = 1100;

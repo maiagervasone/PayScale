@@ -5,8 +5,7 @@ import java.util.Map;
 
 
 public class Data {
-    Map<String, State> states = new HashMap<String, State>();
-    //Map<Double, Double> stateTaxes = new HashMap<Double,
+    public static Map<String, State> states = new HashMap<String, State>();
     double[] stateTaxRates;
     double[] statTaxBrackets;
 

@@ -14,6 +14,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button myoffers;
     Button howitworks;
 
+    // Data
+    public static Data stateData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +25,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         assignId(compareOffers, R.id.compareOffersButton);
         assignId(myoffers,R.id.myoffers);
         assignId(howitworks,R.id.howitworks);
+
+        // Init Data
+        stateData = new Data();
     }
 
     void assignId(Button btn, int id){

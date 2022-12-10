@@ -21,7 +21,6 @@ public class State {
     public int averageSalary;
     double[] stateTaxRates;
     double[] stateTaxBrackets;
-    //public Map<Double, Double> stateTaxes = new HashMap<Double, Double>();
 
     public State() {}
 

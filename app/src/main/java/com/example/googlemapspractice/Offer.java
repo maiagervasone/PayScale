@@ -7,16 +7,18 @@ public class Offer {
 
     private String company;
     private String location;
-    private int annualSalary;
+    private double annualSalary;
+    private double netSalary;
 
     private double lat;
     private double lon;
 
-    public Offer(String company, String location, int salary, double lat, double lon)
+    public Offer(String company, String location, double salary, double netSalary, double lat, double lon)
     {
         this.company = company;
         this.location = location;
         this.annualSalary = salary;
+        this.netSalary = netSalary;
         this.lat = lat;
         this.lon = lon;
     }
@@ -29,7 +31,7 @@ public class Offer {
         return location;
     }
 
-    public int getAnnualSalary() {
+    public double getAnnualSalary() {
         return annualSalary;
     }
 
@@ -40,4 +42,6 @@ public class Offer {
     public double getLon(){
         return lon;
     }
+
+    public double getNetSalary() { return netSalary; }
 }
