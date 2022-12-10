@@ -77,7 +77,8 @@ public class ViewByListActivity extends AppCompatActivity implements View.OnClic
                 t3v.setGravity(Gravity.CENTER);
                 tbrow.addView(t3v);
                 TextView t4v = new TextView(this);
-                t4v.setText("" + (int)offer.getNetSalary()/1000 + "k");
+                String netIncome = String.format("%.2f", offer.getNetSalary() / 1000) + "k";
+                t4v.setText("" + netIncome);
                 t4v.setTextColor(Color.rgb(115, 115, 115));
                 t4v.setGravity(Gravity.CENTER);
                 tbrow.addView(t4v);
@@ -94,6 +95,7 @@ public class ViewByListActivity extends AppCompatActivity implements View.OnClic
         if (buttonText.equals("back")) {
             Intent myIntent = new Intent(getBaseContext(), MyOffers.class);
             startActivity(myIntent);
+            finish();
             return;
         }
         if (buttonText.equals("Add New Offer +")) {

@@ -14,12 +14,8 @@ import org.parceler.Parcels;
 
 public class CompareOffersActivity extends AppCompatActivity implements View.OnClickListener{
 
-    //private List<StateNameItem> stateNameItemList;
     AutoCompleteTextView stateOneAutoCompleteTextView;
     AutoCompleteTextView stateTwoAutoCompleteTextView;
-
-    // Data
-    Data stateData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +43,6 @@ public class CompareOffersActivity extends AppCompatActivity implements View.OnC
         stateOneAutoCompleteTextView.setAdapter(arrayAdapter);
         stateTwoAutoCompleteTextView.setAdapter(arrayAdapter);
 
-        // Init Data
-        stateData = new Data();
-
         // Set onclick listeners
         startComparisonButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,16 +54,27 @@ public class CompareOffersActivity extends AppCompatActivity implements View.OnC
                     // Make Toast later
                     return;
                 }
-                String stateOneName = stateOneAutoCompleteTextView.getText().toString();
-                String stateTwoName = stateTwoAutoCompleteTextView.getText().toString();
-                State stateOne = stateData.states.get(stateOneName);
-                State stateTwo = stateData.states.get(stateTwoName);
+
+                String stateOneName = stateOneAutoCompleteTextView.getText().toString().toLowerCase();
+                String stateTwoName = stateTwoAutoCompleteTextView.getText().toString().toLowerCase();
+                State stateOne = Data.states.get(stateOneName);
+                State stateTwo = Data.states.get(stateTwoName);
 
                 Intent comparisonIntent = new Intent(CompareOffersActivity.this, ComparisonActivity.class);
-                comparisonIntent.putExtra("salary", enterSalaryEditText.getText().toString());
+                comparisonIntent.putExtra("salary", Double.parseDouble(enterSalaryEditText.getText().toString()));
                 comparisonIntent.putExtra("stateOne", Parcels.wrap(stateOne));
                 comparisonIntent.putExtra("stateTwo", Parcels.wrap(stateTwo));
                 startActivity(comparisonIntent);
+            }
+        });
+
+        // See taxes button
+        seeTaxesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent taxIntent = new Intent(CompareOffersActivity.this, TaxesActivity.class);
+                taxIntent.putExtra("salary", Double.parseDouble(enterSalaryEditText.getText().toString()));
+                startActivity(taxIntent);
             }
         });
     }
