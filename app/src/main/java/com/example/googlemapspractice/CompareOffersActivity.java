@@ -54,6 +54,7 @@ public class CompareOffersActivity extends AppCompatActivity implements View.OnC
                     // Make Toast later
                     return;
                 }
+
                 String stateOneName = stateOneAutoCompleteTextView.getText().toString().toLowerCase();
                 String stateTwoName = stateTwoAutoCompleteTextView.getText().toString().toLowerCase();
                 State stateOne = Data.states.get(stateOneName);

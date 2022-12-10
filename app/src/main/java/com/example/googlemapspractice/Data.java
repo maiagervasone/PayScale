@@ -24,7 +24,7 @@ public class Data {
 
         states.put("alabama", alabama);
 
-        State alaska = new State("alaska",0.0, 125.5, 131.8, 120.0,
+        State alaska = new State("Alaska",0.0, 125.5, 131.8, 120.0,
                 138.4, 121.0, 151.7, 120.5, 70638);
         states.put("alaska", alaska);
 
@@ -88,7 +88,7 @@ public class Data {
 
         states.put("delaware", delaware);
 
-        State florida = new State("florida", 6.0, 104.5,	106.4,	112.2,
+        State florida = new State("Florida", 6.0, 104.5,	106.4,	112.2,
                 99.0,	97.7,	98.0,	100.2, 53972);
         states.put("florida", florida);
 
@@ -277,7 +277,7 @@ public class Data {
 
         states.put("nevada", nevada);
 
-        State newHampshire = new State("new hampshire", 0.0, 114.7,	104.6,	107.4,
+        State newHampshire = new State("New Hampshire", 0.0, 114.7,	104.6,	107.4,
                 113.7,	111.5,	128.7,	127.4, 67046);
         states.put("new hampshire", newHampshire);
 
@@ -391,15 +391,15 @@ public class Data {
 
         states.put("south carolina", southCarolina);
 
-        State southDakota = new State("south dakota", 4.5, 96.1,	100.4,	99.6,
+        State southDakota = new State("South Dakota", 4.5, 96.1,	100.4,	99.6,
                 91.9,	89.5,	98.6,	92.6, 58870);
         states.put("south dakota", southDakota);
 
-        State tennessee = new State("tennessee", 7.0, 90.3,	94.4,	84.0,
+        State tennessee = new State("Tennessee", 7.0, 90.3,	94.4,	84.0,
                 94.7,	91.2,	87.8,	93.3, 59520);
         states.put("tennessee", tennessee);
 
-        State texas = new State("texas", 6.25, 92.6,	91.0,	84.8,
+        State texas = new State("Texas", 6.25, 92.6,	91.0,	84.8,
                 105.9,	91.9,	94.8,	96.8, 63881);
         states.put("texas", texas);
 
@@ -433,7 +433,7 @@ public class Data {
 
         states.put("virginia", virginia);
 
-        State washington = new State("washington", 6.5, 114.0,	107.0,	133.5,
+        State washington = new State("Washington", 6.5, 114.0,	107.0,	133.5,
                 106.4,	111.4,	96.5,	103.7, 78428);
         states.put("washington", washington);
 

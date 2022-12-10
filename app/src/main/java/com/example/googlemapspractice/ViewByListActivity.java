@@ -67,7 +67,7 @@ public class ViewByListActivity extends AppCompatActivity implements View.OnClic
                 t1v.setGravity(Gravity.CENTER);
                 tbrow.addView(t1v);
                 TextView t2v = new TextView(this);
-                t2v.setText("" + offer.getLocation());
+                t2v.setText("" + offer.getCity());
                 t2v.setTextColor(Color.rgb(115, 115, 115));
                 t2v.setGravity(Gravity.CENTER);
                 tbrow.addView(t2v);
@@ -98,7 +98,7 @@ public class ViewByListActivity extends AppCompatActivity implements View.OnClic
             finish();
             return;
         }
-        if (buttonText.equals("+")) {
+        if (buttonText.equals("Add New Offer +")) {
             Intent myIntent = new Intent(getBaseContext(), AddOfferActivity.class);
             startActivity(myIntent);
             return;

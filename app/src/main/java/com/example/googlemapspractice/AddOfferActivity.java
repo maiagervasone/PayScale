@@ -48,6 +48,7 @@ public class AddOfferActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         String cityName = addresses.get(0).getLocality();
+        //String state = addresses.get(0).getAdminArea();
 
         // Get state from location string
         int stateIndex = location.indexOf(",") + 2;
