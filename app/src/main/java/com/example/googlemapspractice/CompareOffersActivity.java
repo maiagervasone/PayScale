@@ -28,8 +28,8 @@ public class CompareOffersActivity extends AppCompatActivity implements View.OnC
 
         // Get components
         Button seeTaxesButton = findViewById(R.id.seeTaxesButton);
-        Button seeStateOneInfoButton = findViewById(R.id.seeStateOneInfoButton);
-        Button seeStateTwoInfoButton = findViewById(R.id.seeStateTwoInfoButton);
+        //Button seeStateOneInfoButton = findViewById(R.id.seeStateOneInfoButton);
+        //Button seeStateTwoInfoButton = findViewById(R.id.seeStateTwoInfoButton);
         Button startComparisonButton = findViewById(R.id.startComparisonButton);
         EditText enterSalaryEditText = findViewById(R.id.enterSalaryEditText);
         stateOneAutoCompleteTextView = findViewById(R.id.firstStateACTV);
@@ -73,6 +73,16 @@ public class CompareOffersActivity extends AppCompatActivity implements View.OnC
                 startActivity(comparisonIntent);
             }
         });
+
+        // See taxes button
+        seeTaxesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent taxIntent = new Intent(CompareOffersActivity.this, TaxesActivity.class);
+                taxIntent.putExtra("salary", Double.parseDouble(enterSalaryEditText.getText().toString()));
+                startActivity(taxIntent);
+            }
+        });
     }
 
     void assignId(Button btn,int id){
@@ -90,4 +100,5 @@ public class CompareOffersActivity extends AppCompatActivity implements View.OnC
             return;
         }
     }
+
 }
